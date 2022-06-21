@@ -15,11 +15,18 @@ const App = () => {
 
 
   const [selected, setSelected] = useState(0)
+
+  const [copy, setCopy] = useState({0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0})
+  
+  const handleVotes = () => {
+    const pointsCopy = {...copy}
+    pointsCopy[selected] =+ 1;
+    setCopy(pointsCopy)
+  }
   
   const random = () => {
      const phrase = Math.floor(Math.random() * 5)
      setSelected(selected + phrase)
-     console.log(selected)
      
      if (selected >= 5){
       setSelected(0)
@@ -29,6 +36,7 @@ const App = () => {
   return (
     <div>
       <div>{anecdotes[selected]}</div>
+      <button onClick = {handleVotes}>vote</button>
       <button onClick = {random}>
         next anecdote
       </button>
